@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  ex22:
+    image: devopsdockeruh/simple-web-service
+    container_name: ex22
+    ports:
+      - 8080:8080
+    command: server
