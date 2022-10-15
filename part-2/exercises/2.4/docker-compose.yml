@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  back:
+    image: back
+    container_name: example-back
+    ports:
+      - 8080:8080
+  front:
+    image: front
+    container_name: example-front
+    ports:
+      - 5000:5000  
+  example-redis:
+    image: redis
+    container_name: example-redis
+    ports: 
+      - 6379:6379
+   
+  
+
