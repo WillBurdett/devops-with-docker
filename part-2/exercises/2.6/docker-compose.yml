@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  back:
+    image: back
+    container_name: example-back
+    restart: unless-stopped 
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_HOST: db
+    depends_on:
+      - db
+    ports:
+      - 8080:8080
+
+  front:
+    image: front
+    container_name: example-front
+    restart: unless-stopped 
+    ports:
+      - 5000:5000  
+
+  example-redis:
+    image: redis
+    container_name: example-redis
+    restart: unless-stopped 
+    ports: 
+      - 6379:6379
+     
+  db: 
+    image: postgres
+    container_name: db
+    restart: unless-stopped 
+    volumes: 
+      - db26:/var/lib/postgresql/data 
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+
+volumes:
+  db26:
+    driver: local
+
